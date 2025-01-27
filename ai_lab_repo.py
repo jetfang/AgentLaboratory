@@ -654,7 +654,7 @@ if __name__ == "__main__":
     else:
         research_topic = args.research_topic
 
-    task_notes_LLM = [
+    task_notes_LLM2 = [
         {"phases": ["plan formulation"],
          "note": f"You should come up with a plan for TWO experiments."},
 
@@ -676,6 +676,23 @@ if __name__ == "__main__":
         {"phases": ["data preparation", "running experiments"],
          "note": "Generate figures with very colorful and artistic design."},
     ]
+    task_notes_LLM = [
+        {"phases": ["plan formulation"],
+         "note": "You should come up with a plan for TWO experiments."},
+        {"phases": ["plan formulation", "data preparation", "running experiments"],
+         "note": "Please use deepseek-chat for your experiments."},
+        {"phases": ["running experiments"],
+         "note": "Use the following code to inference deepseek-chat: \nfrom openai import OpenAI\nclient = OpenAI(api_key='YOUR_DEEPSEEK_API_KEY', base_url='https://api.deepseek.com')\ncompletion = client.chat.completions.create(\nmodel='deepseek-chat', messages=messages)\nanswer = completion.choices[0].message.content\n"},
+        {"phases": ["running experiments"],
+         "note": "You have access to only deepseek-chat using the DeepSeek API, please use the following key YOUR_DEEPSEEK_API_KEY but do not use too many inferences."},
+        {"phases": ["running experiments"],
+         "note": "I would recommend using a small dataset (approximately only 100 data points) to run experiments in order to save time. Do not use much more than this unless you have to or are running the final tests."},
+        {"phases": ["data preparation", "running experiments"],
+         "note": "You are running on a Google Colab instance. You can use 'cpu' with PyTorch."},
+        {"phases": ["data preparation", "running experiments"],
+         "note": "Generate figures with very colorful and artistic design."},
+    ]
+
 
     task_notes_LLM.append(
         {"phases": ["literature review", "plan formulation", "data preparation", "running experiments", "results interpretation", "report writing", "report refinement"],
